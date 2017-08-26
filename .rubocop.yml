@@ -1,0 +1,8 @@
+AllCops:
+  Excludes:
+    - spec/*.rb
+    - bin/*
+    - Rakefile
+    - Gemfile
+    - emoji_translate.gemspec
+    - lib/emoji_translate/version.rb
