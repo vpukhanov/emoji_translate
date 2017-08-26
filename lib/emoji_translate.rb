@@ -10,6 +10,7 @@ module EmojiTranslate
   end
 
   def self.clean_up_word(word)
+    # Save punctuation from the start and the end of the word
     begin_punctuation = ''
     end_punctuation = ''
 
@@ -36,20 +37,23 @@ module EmojiTranslate
   end
 
   def self.get_all_possibilities(word)
+    # It could be singular word in plural form
     possible_singular = nil
     possible_singular = word[0..-2] if word.length > 2 && word.end_with?('s')
 
+    # It could be a plural word in singular form
     possible_plural = word.length > 1 ? word + 's' : nil
 
+    # It could be different verbed form
     possible_verbed_simple = nil
     possible_verbed_vowel = nil
     possible_verbed_doubled = nil
     if word.end_with?('ing')
       verb = word.chomp 'ing'
 
-      possible_verbed_simple = verb
-      possible_verbed_vowel = verb + 'e'
-      possible_verbed_doubled = verb[0..-2]
+      possible_verbed_simple = verb # starting -> start
+      possible_verbed_vowel = verb + 'e' # dancing -> dance
+      possible_verbed_doubled = verb[0..-2] # beginning -> begin
     end
 
     [
